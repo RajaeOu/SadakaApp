@@ -197,7 +197,7 @@ source={require('../../assets/images/donate.jpeg')} // Assurez-vous que l'image 
 
   style={styles.headerImage}
 />
-        <Text style={styles.title}>Ajouter une annonce</Text>
+        <Text style={styles.title}>Ajouter une annonce 1</Text>
       </View>
       <View style={styles.form}>
         <TextInput
