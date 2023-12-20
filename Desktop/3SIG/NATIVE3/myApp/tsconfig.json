@@ -8,5 +8,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "app/(tabs)/page3.tsx", "app/(tabs)/annonce.js", "app/GlobalStyles.js", "app/(tabs)/formulaireAnnonce.js","app/tab2/page1.tsx","app/(tabs)/page2.tsc","app/tab2/connecter.tsx", "components/navbar.tsx", "app/(tabs)/acceuilAnnonce.tsx" ]
+, "app/(tabs)/page3.tsx", "app/(tabs)/annonce.js", "app/GlobalStyles.js", "app/(tabs)/formulaireAnnonce.js","app/tab2/page1.tsx","app/(tabs)/page2.tsc","app/tab2/connecter.tsx", "components/navbar.tsx", "app/(tabs)/acceuilAnnonce.tsx", "app/(tabs)/Accueil1.js", "components/Categories.js" ]
 }

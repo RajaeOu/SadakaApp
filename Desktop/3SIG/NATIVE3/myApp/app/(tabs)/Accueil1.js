@@ -21,21 +21,44 @@ import axios from "axios";
 
 export default function TabTwoScreen() {
   const [announcements, setAnnouncements] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch1 = () => {
+    console.log("hh");
+   }
+     const handleSearch = () => {
+    // Appeler votre API ici en utilisant Axios pour la requête de recherche
+    axios.get(`http://172.16.32.141:8086/annonces/par-motcle/${searchTerm}`)
+      .then(response => {
+        // Mettre à jour la liste des annonces avec les résultats de la recherche
+        setAnnouncements(response.data);
+console.log(announcements);
+        // ... Autres actions à effectuer après la recherche ...
+      })
+      .catch(error => {
+        console.error('Erreur lors de la recherche :', error);
+      });
+  };
 
   useEffect(() => {
     // Fetch data from the server when the component mounts
     axios.get("http://172.16.32.141:8086/annonces/all_annonces")
       .then((response) => {
         setAnnouncements(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching announcements:", error);
       });
   }, []);
+  
+
+ 
+  
 
   return (
     <View style={{ flex: 1 }}>
+      
       <ScrollView style={{ flex: 1, backgroundColor: "#f8f8f8" }}>
         <View style={{ marginHorizontal: 10,
           flexDirection: "row",
@@ -58,11 +81,18 @@ export default function TabTwoScreen() {
               flex: 1,
             }}
           >
-            <TextInput
+             <TextInput
               style={{ flex: 1, fontSize: 16 }}
-              placeholder="Search for food, hotels"
+              placeholder="Entrez votre terme de recherche"
+              value={searchTerm}
+              onChangeText={(text) => setSearchTerm(text)}
             />
-            <AntDesign name="search1" size={24} color="#E52B50" />
+            <Pressable
+              style={{ padding: 10 }}
+              onPress={handleSearch}
+            >
+              <AntDesign name="search1" size={24} color="#E52B50" />
+            </Pressable>
           </View>
           <Pressable
             style={{
@@ -75,7 +105,7 @@ export default function TabTwoScreen() {
               alignItems: "center",
             }}
           >
-            {/* <Text>S</Text> */}
+            <Text>S</Text>
           </Pressable>
         </View>
 

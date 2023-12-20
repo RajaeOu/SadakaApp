@@ -91,7 +91,6 @@ const MonFormulaire = () => {
       quantite: quantity,
       date: new Date(),
       commune: commune,
-      //statut: "Active",
       // photo: "base64-encoded-image-data"
       statut:"En Cours"
     };
@@ -260,7 +259,7 @@ source={require('../../assets/images/donate.jpeg')} // Assurez-vous que l'image 
             <Text style={styles.buttonText}>Enregistrer</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => {}}>
-            <Text style={styles.buttonText}><Link href={"/acceuilAnnonce"}>Annuler</Link></Text>
+            <Text style={styles.buttonText}><Link href={"/Accueil1"}>Annuler</Link></Text>
           </TouchableOpacity>
         </View>
         <Modal

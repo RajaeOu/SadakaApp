@@ -8,7 +8,7 @@ export default function Navigator() {
     <View style={styles.container}>
       <View style={styles.navbar}>
         <Pressable style={styles.iconb}>
-          <Link href="/(tabs)/acceuilAnnonce">
+          <Link href="/(tabs)/Accueil1">
             <MaterialIcons name="home" size={25} color="#AFABAB" style={styles.iconst} />
           </Link>
         </Pressable>
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: '#FFDADA ',
+    backgroundColor: '#FEF5F5 ',
     borderTopWidth: 3,
     borderTopColor: '#AFABAB',
   },
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     borderRightColor: '#2c3e50',
   },
   iconst: {
-    color: '#CDCBCB',
+    color: '#A19F9F',
   },
 });
 

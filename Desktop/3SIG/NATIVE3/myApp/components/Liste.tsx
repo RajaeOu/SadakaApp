@@ -144,11 +144,25 @@ import { Feather } from '@expo/vector-icons';
   const [selectedItem, setSelectedItem] = useState(null);
   const [quantity, setQuantity] = useState('');
 
-  
+  type category = {
+      id: string;
+      nom: string;
+    };
+    
+      interface Item {
+        id: string;
+        titre: string;
+        image: any; // Type approprié pour vos images, généralement 'any' ou 'string'
+        description: string;
+        date: string; // Ajout de la propriété date
+        commune:string;
+        categorie: category; // Utilisation du type Category ici
+        quantite:string;
+      }
 
   const navigateToDetail = (item) => {
     setSelectedItem(item);
-    navigation.navigate("mes_annonces", { item });
+    navigation.navigate("DetailScreen", { item });
   };
 
   const handleDemanderPress = (item) => {
@@ -158,7 +172,7 @@ import { Feather } from '@expo/vector-icons';
 
   const handleDemanderConfirmation = () => {
     // Mettez ici le code pour traiter la demande avec la quantité spécifiée
-    alert('Demande pour ${quantity} ${selectedItem.title}');
+    alert(`Demande pour ${quantity}, ${selectedItem.title}`);
     // Fermez la modal
     setModalVisible(false);
   };
@@ -170,12 +184,23 @@ import { Feather } from '@expo/vector-icons';
         renderItem={({ item }) => (
           <View style={styles.itemContainer}>
             <Pressable onPress={() => navigateToDetail(item)}>
-              <Image source={item.image} style={styles.image} />
+              {/* <Image source={item.image} style={styles.image} /> */}
+              <Image
+            source={require("../assets/images/supportdonations.png")}
+       style={styles.image}
+      />
               <View style={styles.textContainer}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.author}>{item.author}</Text>
-                <Text style={styles.location}>{item.location}</Text>
-                <Text style={styles.date}>{item.date}</Text>
+              <Text  style={styles.author}>                    Title: {item.titre}</Text>
+     <Text style={styles.location}>Commune: {item.commune}</Text>
+ {/* <Text style={styles.location}>Catégorie: {item.categorie.nom}</Text> */}
+ <Text style={styles.location}>Quantité: {item.quantite}</Text>
+
+        <Text style={styles.location}>Date:  {item.date}</Text>
+
+
+        {item.categorie && item.categorie.nom && (
+        <Text style={styles.location}>Categorie: {item.categorie.nom}</Text>
+      )}
               </View>
             </Pressable>
             <Pressable style={styles.orderButton} onPress={() => handleDemanderPress(item)}>
