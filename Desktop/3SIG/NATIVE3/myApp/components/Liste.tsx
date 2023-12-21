@@ -288,8 +288,10 @@ const styles = StyleSheet.create({
     marginTop: 3, // Ajout d'une marge pour l'espacement
   },
   orderButton: {
-    backgroundColor: '#FFB6C1', // Couleur rose clair
+    // backgroundColor: '#FFB6C1', // Couleur rose clair
     padding: 10,
+   backgroundColor: '#800020', // Couleur rose clair
+
     borderRadius: 8,
     marginTop: 8,
     alignItems: 'center',

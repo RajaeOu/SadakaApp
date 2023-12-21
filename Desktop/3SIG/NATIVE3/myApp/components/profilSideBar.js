@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { Image } from "expo-image";
-import { Color, FontFamily, FontSize } from "../GlobalStyles";
+import { Color, FontFamily, FontSize } from "../app/GlobalStyles";
 import { Link } from 'expo-router';
 
 
@@ -12,7 +12,7 @@ const IPhone13144 = () => {
       <Image
         style={[styles.vectorIcon, styles.iconLayout]}
         contentFit="cover"
-        source={require("../../assets/frame.png")}
+        source={require("../assets/frame.png")}
       />
       {/* <Link href={"/tab2/modifierProfil"}><View style={styles.container3}>
         <Image
@@ -23,7 +23,7 @@ const IPhone13144 = () => {
       <Image
         style={[styles.objectsIcon, styles.iconLayout]}
         contentFit="cover"
-        source={require("../../assets/objects.png")}
+        source={require("../assets/objects.png")}
       />
            <Text style={[styles.myProfil, styles.helpFlexBox]}><Link href={"/tab2/modifierProfil"}>My Profil</Link>
 </Text>
@@ -35,29 +35,29 @@ const IPhone13144 = () => {
         <Image
           style={styles.download1Icon}
           contentFit="cover"
-          source={require("../../assets/vector1.png")}
+          source={require("../assets/vector1.png")}
         />
       </View>
       <Text style={[styles.jhonLook, styles.helpFlexBox]}>Jhon Look</Text>
       <Image
         style={[styles.iconUser, styles.iconLayout]}
         contentFit="cover"
-        source={require("../../assets/-icon-user1.png")}
+        source={require("../assets/-icon-user1.png")}
       />
       <Image
         style={[styles.iconQuestionMarkCircle, styles.iconPosition]}
         contentFit="cover"
-        source={require("../../assets/-icon-question-mark-circle.png")}
+        source={require("../assets/-icon-question-mark-circle.png")}
       />
       <Image
         style={[styles.iconLogOut, styles.iconPosition]}
         contentFit="cover"
-        source={require("../../assets/-icon-log-out.png")}
+        source={require("../assets/-icon-log-out.png")}
       />
       <Image
         style={[styles.iconSettings, styles.iconLayout]}
         contentFit="cover"
-        source={require("../../assets/-icon-settings.png")}
+        source={require("../assets/-icon-settings.png")}
       />
     </View>
   );

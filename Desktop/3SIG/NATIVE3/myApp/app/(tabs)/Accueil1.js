@@ -16,6 +16,10 @@ import Carousel from "../../components/Carousel";
 import Categories from "../../components/Categories";
 import Liste from "../../components/Liste";
 import Divider from '../../components/Divider';
+import Sidebar from '../../components/SideBar'; // Import your Sidebar component
+
+
+
 import Navigator from './Navigator';
 import axios from "axios";
 
@@ -52,7 +56,10 @@ console.log(announcements);
       });
   }, []);
   
-
+  const [showSidebar, setShowSidebar] = useState(false);
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
  
   
 
@@ -104,9 +111,13 @@ console.log(announcements);
               justifyContent: "center",
               alignItems: "center",
             }}
+            onPress={toggleSidebar}
+
           >
             <Text>S</Text>
           </Pressable>
+          <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
+
         </View>
 
         <Carousel />

@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     borderRightColor: '#2c3e50',
   },
   iconst: {
-    color: '#A19F9F',
+    color: '#959595',
   },
 });
 

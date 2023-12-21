@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
 const [announcements, setAnnouncements] = useState([]);
 
 const [selectedCategory, setSelectedCategory] = useState(null);
@@ -36,10 +37,13 @@ const Categories = () => {
     try {
       const response = await axios.get(`http://172.16.32.141:8086/annonces/par-categorie/${categoryId}`);
       setAnnouncements(response.data);
+      console.log(response.data);
+      
     } catch (error) {
       console.error('Erreur lors de la récupération des annonces par catégorie:', error);
     }
   };
+  
   const handleCategoryPress = (categoryId) => {
     setSelectedCategory(categoryId);
     getAnnouncementsByCategory(categoryId);
@@ -68,7 +72,8 @@ const Categories = () => {
         keyExtractor={(item) => item.id}
         renderItem={renderCategoryItem}
       /> */}
-      <FlatList horizontal showsHorizontalScrollIndicator={false} data={items} renderItem={({item}) => (
+      <FlatList horizontal showsHorizontalScrollIndicator={false} data={items} 
+       renderItem={({item}) => (
           <TouchableOpacity activeOpacity={0.8} style={{marginTop:5}}>
               <View style={{marginHorizontal:10,marginVertical:5,padding:5,backgroundColor:"#DB7093",borderRadius:4}}>
                   <Text style={{paddingHorizontal:5,color:"white",fontWeight:"500"}}>{item?.name}</Text>

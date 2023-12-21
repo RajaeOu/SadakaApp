@@ -45,7 +45,7 @@ const DetailScreen = () => {
        style={styles.image}
       />
               <View style={styles.textContainer}>
-              <Text style={styles.title}>            Title : {item.titre}{'\n'}</Text>
+              <Text style={styles.title}>          Title : {item.titre}{'\n'}</Text>
      <Text style={styles.location}>Commune: {item.commune}</Text>
  {/* <Text style={styles.location}>Catégorie: {item.categorie.nom}</Text> */}
  <Text style={styles.location}>Quantité: {item.quantite}</Text>
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     color: '#505050',
   },
   orderButton: {
-    backgroundColor: '#FFB6C1', // Rose clair
+    backgroundColor: '#800020', // Rose clair
     padding: 10,
     borderRadius: 8,
     marginTop: 16,

@@ -22,6 +22,7 @@ const regions = [
   'Dakhla-Oued Ed-Dahab']; // Liste des regions
 const communes = [
   'Séléctiooner une commune',
+  'Bni Hadifa',
   'Tanger',
   'Tétouan',
   'Chefchaouen',
