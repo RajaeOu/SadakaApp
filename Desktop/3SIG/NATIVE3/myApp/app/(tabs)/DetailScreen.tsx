@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, Pressable, Modal, TextInput } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
-import Navigator from './Navigator';
-
 
 const DetailScreen = () => {
   const route = useRoute();
@@ -39,25 +37,23 @@ const DetailScreen = () => {
 
   return (
     <View style={styles.container}>
-     {/* <Image source={item.image} style={styles.image} /> */}
-     <Image
+      <Image source={item.image} style={styles.image} />
+      <View style={styles.textContainer}>
+      <Image
             source={require("../../assets/images/supportdonations.png")}
        style={styles.image}
       />
-              <View style={styles.textContainer}>
-              <Text style={styles.title}>          Title : {item.titre}{'\n'}</Text>
-     <Text style={styles.location}>Commune: {item.commune}</Text>
- {/* <Text style={styles.location}>Catégorie: {item.categorie.nom}</Text> */}
- <Text style={styles.location}>Quantité: {item.quantite}</Text>
+        <Text style={styles.author}>           Title: {item.titre}</Text>
+        <Text style={styles.location}>Commune: {item.commune}</Text>
+        {/* <Text style={styles.location}>Catégorie: {item.categorie.nom}</Text> */}
+        <Text style={styles.location}>Quantité: {item.quantite}</Text>
 
-        <Text style={styles.location}>Description:  {item.description}</Text>
         <Text style={styles.location}>Date:  {item.date}</Text>
 
 
-
         {item.categorie && item.categorie.nom && (
-        <Text style={styles.location}>Categorie: {item.categorie.nom}</Text>
-      )}
+          <Text style={styles.location}>Categorie: {item.categorie.nom}</Text>
+        )}
         <Pressable
           style={styles.orderButton}
           onPress={handleDemanderPress}
@@ -92,39 +88,32 @@ const DetailScreen = () => {
           </View>
         </View>
       </Modal>
-      <View style={styles.navigatorContainer}>
-        <Navigator />
-      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    navigatorContainer: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-      },
   container: {
     flex: 1,
-    padding: 16,
+    padding: 10,
+    marginTop: 2,
   },
   image: {
     width: '100%',
-    height: 300,
-    borderRadius: 6,
-    marginBottom: 16,
-    marginTop:25,
+    height: 150,
+    borderRadius: 8,
+    marginBottom: 3, // Ajustez cette valeur pour réduire la marge
+    top: -150,
   },
   textContainer: {
-    padding: 16,
+    padding: 1,
   },
   title: {
     fontSize: 24,
     fontWeight: '600',
-    marginBottom: 8,
-    color:'gray',
+    marginBottom: 3, // Ajustez cette valeur pour réduire la marge
+    color: 'black',
+    top: -100,
   },
   author: {
     fontSize: 18,
@@ -144,7 +133,7 @@ const styles = StyleSheet.create({
     color: '#505050',
   },
   orderButton: {
-    backgroundColor: '#800020', // Rose clair
+    backgroundColor: '#FF69B4', // Rose clair
     padding: 10,
     borderRadius: 8,
     marginTop: 16,

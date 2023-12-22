@@ -172,7 +172,7 @@ import { Feather } from '@expo/vector-icons';
 
   const handleDemanderConfirmation = () => {
     // Mettez ici le code pour traiter la demande avec la quantité spécifiée
-    alert(`Demande pour ${quantity}, ${selectedItem.title}`);
+    alert(`Demande pour ${quantity}  ${selectedItem.titre}`);
     // Fermez la modal
     setModalVisible(false);
   };

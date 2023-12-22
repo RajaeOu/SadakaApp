@@ -36,7 +36,7 @@ const login = () => {
   }, []);
 
   const signInWithEmail = async () => {
-    router.replace("/Accueil")
+    router.replace("/Accueil1")
     // Ici, vous pouvez mettre en œuvre la logique d'authentification de votre choix
     // sans utiliser Supabase ni une base de données.
 

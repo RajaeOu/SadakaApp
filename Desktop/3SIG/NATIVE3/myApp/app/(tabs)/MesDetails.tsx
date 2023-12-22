@@ -1,61 +1,56 @@
 import React, { useState } from 'react';
-import { FlatList, View, Text, Image, StyleSheet, Pressable, Modal, TextInput } from 'react-native';
+import { View, Text, Image, StyleSheet, Pressable, Modal, TextInput } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from '@expo/vector-icons';
 
-const MaListe = () => {
+const MesDetails = () => {
+  const route = useRoute();
   const navigation = useNavigation();
+  const item = route.params?.item;
 
   const [isModalVisible, setModalVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
   const [quantity, setQuantity] = useState('');
 
-  const data = [
-    { id: '1', title: 'Don1', image: require("../assets/images/supportdonations.png"), author: 'Chaussures', location: 'Rabat', date: '2023-12-13' },
-    { id: '2', title: 'Don2', image: require("../assets/images/supportdonations.png"), author: 'Pantalons', location: 'Fes', date: '2022-12-13' },
-    { id: '3', title: 'Don3', image: require("../assets/images/supportdonations.png"), author: 'Chaises', location: 'Tata', date: '2023-03-21' },
-    { id: '4', title: 'Don4', image:require("../assets/images/supportdonations.png"), author: 'Bureaux', location: 'Casablanca', date: '2020-02-13' },
-  ];            
+  if (!item) {
+    return (
+      <View style={styles.container}>
+        <Text>Erreur: Les détails de l'annonce ne sont pas disponibles.</Text>
+      </View>
+    );
+  }
 
-
-  const navigateToDetail = (item) => {
-    setSelectedItem(item);
-    navigation.navigate("MesDetails", { item });
-  };
-
-  const handleDemanderPress = (item) => {
-    setSelectedItem(item);
+  const handleDemanderPress = () => {
     setModalVisible(true);
   };
 
+  const handleModalClose = () => {
+    setModalVisible(false);
+  };
+
+  const handleQuantityChange = (text) => {
+    setQuantity(text);
+  };
+  
+
+  const handleDemanderConfirmation = () => {
+    alert(`Demande pour ${quantity} ${item.title}`);
+    handleModalClose();
+  };
   const handleViewDemandes = (itemId: string) => {
     // Navigate to DemandeSurAnnonceScreen with the item ID
     navigation.navigate('DemandeSurAnnonceScreen', { itemId });
   };
 
-  const handleDemanderConfirmation = () => {
-    // Mettez ici le code pour traiter la demande avec la quantité spécifiée
-    alert(`Demande pour ${quantity} ${selectedItem.title}`);
-    // Fermez la modal
-    setModalVisible(false);
-  };
-
   return (
     <View style={styles.container}>
-      <FlatList
-        data={data}
-        renderItem={({ item }) => (
-          <View style={styles.itemContainer}>
-            <Pressable onPress={() => navigateToDetail(item)}>
-              <Image source={item.image} style={styles.image} />
-              <View style={styles.textContainer}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.author}>{item.author}</Text>
-                <Text style={styles.location}>{item.location}</Text>
-                <Text style={styles.date}>{item.date}</Text>
-              </View>
-            </Pressable>
-            <View style={styles.actionButtonsContainer}>
+      <Image source={item.image} style={styles.image} />
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.author}>{item.author}</Text>
+        <Text style={styles.location}>{item.location}</Text>
+        <Text style={styles.date}>{item.date}</Text>
+        <View style={styles.actionButtonsContainer}>
               {/* Bouton Modifier */}
               <Pressable style={styles.iconButton}>
                 <Feather name="edit" size={24} color="white" />
@@ -69,17 +64,14 @@ const MaListe = () => {
                 <Feather name="eye" size={24} color="white" />
               </Pressable>
             </View>
-          </View>
-        )}
-        keyExtractor={(item) => item.id}
-        style={styles.container}
-      />
+      </View>
+
       {/* Modal */}
       <Modal
         animationType="slide"
         transparent={true}
         visible={isModalVisible}
-        onRequestClose={() => setModalVisible(false)}
+        onRequestClose={handleModalClose}
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
@@ -89,7 +81,7 @@ const MaListe = () => {
               placeholder="Quantité"
               keyboardType="numeric"
               value={quantity}
-              onChangeText={(text) => setQuantity(text)}
+              onChangeText={handleQuantityChange}
             />
             <Pressable style={styles.iconButton} onPress={handleDemanderConfirmation}>
               <Feather name="check" size={24} color="white" />
@@ -109,51 +101,52 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
-  itemContainer: {
-    backgroundColor: 'white',
-    marginBottom: 12,
-    borderRadius: 20,
-    overflow: 'hidden', // Ensure the borderRadius is applied to the child components
-    borderColor: '#C8C8C8',
-    borderWidth: 0.5,
-  },
   image: {
     width: '100%',
-    height: 150,
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
+    height: 300,
+    borderRadius: 6,
+    marginBottom: 16,
+    marginTop:25,
   },
   textContainer: {
     padding: 16,
   },
   title: {
-    fontSize: 16,
+    fontSize: 24,
     fontWeight: '600',
-    marginBottom: 3,
+    marginBottom: 8,
+    color:'gray',
   },
   author: {
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: '500',
     color: 'gray',
-    marginBottom: 3,
+    marginBottom: 8,
   },
   location: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: '500',
     color: '#505050',
+    marginBottom: 8,
   },
   date: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: '500',
     color: '#505050',
-    marginTop: 3, // Ajout d'une marge pour l'espacement
   },
-  actionButtonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',  // Centrer les éléments horizontalement
-    marginTop: 8,
-    marginBottom:8,
+  orderButton: {
+    backgroundColor: '#FF69B4', // Rose clair
+    padding: 10,
+    borderRadius: 8,
+    marginTop: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+  orderButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  // Styles for the modal
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -186,6 +179,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  actionButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',  // Centrer les éléments horizontalement
+    marginTop: 8,
+    marginBottom:8,
+  },
 });
 
-export default MaListe;
+export default MesDetails;

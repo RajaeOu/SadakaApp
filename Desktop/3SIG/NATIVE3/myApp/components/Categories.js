@@ -74,7 +74,9 @@ const Categories = () => {
       /> */}
       <FlatList horizontal showsHorizontalScrollIndicator={false} data={items} 
        renderItem={({item}) => (
-          <TouchableOpacity activeOpacity={0.8} style={{marginTop:5}}>
+          <TouchableOpacity activeOpacity={0.8} style={{marginTop:5}}
+          onPress={() => handleCategoryPress(item.id)}
+          >
               <View style={{marginHorizontal:10,marginVertical:5,padding:5,backgroundColor:"#DB7093",borderRadius:4}}>
                   <Text style={{paddingHorizontal:5,color:"white",fontWeight:"500"}}>{item?.name}</Text>
               </View>

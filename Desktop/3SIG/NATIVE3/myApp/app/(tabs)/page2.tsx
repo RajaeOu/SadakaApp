@@ -98,7 +98,7 @@ const Box = () => {
           style={styles.image1}
           source={require('../../assets/images/deuxTirets.png')} // Assurez-vous que l'image est correctement située
         />
-       <Link href={"/Accueil1"}><View style={styles.container3}>
+       <Link href={"/register"}><View style={styles.container3}>
         <Image       
         source={require('../../assets/images/fleche.png')}
         style={styles.image2}

@@ -4,14 +4,16 @@ import { Picker } from '@react-native-picker/picker';
 import * as ImagePicker from 'expo-image-picker'; 
 import { Link } from 'expo-router';
 import axios from 'axios';
+import Navigator from './Navigator';
+
 
 
 // const categories = ['Séléctiooner une catégorie','Vetements','Chaussures' ,'Nouriture', 'Immeubles','Service','Monais','Médicament', 'Autre']; // Liste des catégories
 const regions = [
   'Séléctiooner une Région',
   'Tanger-Tétouan-Al Hoceïma',
-  'Fès-Meknès',
-  'Rabat-Salé-Kénitra',
+  'Bni Gmil',
+  'Bni Gmil',
   'Béni Mellal-Khénifra',
   'Casablanca-Settat',
   'Marrakech-Safi',
@@ -23,26 +25,15 @@ const regions = [
 const communes = [
   'Séléctiooner une commune',
   'Bni Hadifa',
-  'Tanger',
-  'Tétouan',
-  'Chefchaouen',
-  'Fahs-Anjra',
-  'Al Hoceïma',
-  'Mdiq-Fnideq',
-  'Ouezzane',
-  'Martil',
-  'Larache',
-  'Asilah',
-  'Ksar El Kebir',
-  'Oued Laou',
-  'Fnideq',
-  'Tétouan-Mdiq',
-  'Aknoul',
-  'Chefchaouen',
-  'Bab Taza',
-  'Brikcha',
-  'Bni Bouayach',
-  'Bni Hadifa',]; // Liste des communes
+  'Ait Kamra',
+  'Bni Gmil',
+  'Senada',
+'Sidi Boutmim',
+  'Ain Jemaa',
+  'Tichla',
+  'Autre'
+  
+  ,]; // Liste des communes
 
 
 const MonFormulaire = () => {
@@ -189,6 +180,7 @@ const MonFormulaire = () => {
   
 
   return (
+    <View>
     <ScrollView style={styles.container}>
        <View style={styles.imageTitleContainer}>
        <Image
@@ -286,13 +278,25 @@ source={require('../../assets/images/donate.jpeg')} // Assurez-vous que l'image 
       </Modal>
       </View>
     </ScrollView>
+     <View style={styles.navigatorContainer}>
+     <Navigator />
+   </View>
+      </View>
+
+
   );
 };
 
 const styles = StyleSheet.create({
+  navigatorContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
    container: {
     paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingTop: 1,
     backgroundColor: '#ffffff',
   },
   headerImage: {

@@ -33,7 +33,7 @@ const Sidebar: React.FC<SidebarProps> = ({ showSidebar, toggleSidebar }) => {
 
   const navigateToSettings = () => {
     toggleSidebar();
-    navigation.navigate('Liste');
+    navigation.navigate('Settings');
   };
 
   const navigateToHelp = () => {
@@ -43,12 +43,12 @@ const Sidebar: React.FC<SidebarProps> = ({ showSidebar, toggleSidebar }) => {
 
   const navigateToProfile = () => {
     toggleSidebar();
-    navigation.navigate('Liste');
+    navigation.navigate('EditProfile');
   };
 
   const navigateToHome = () => {
     toggleSidebar();
-    navigation.navigate('Liste');
+    navigation.navigate('Accueil1');
   };
 
   return (

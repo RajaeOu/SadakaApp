@@ -20,8 +20,7 @@ const DemandeSurAnnonceScreen = () => {
       date: '01/01/2023',
       quantity: 3,
       state: 'En attente',
-      image:  require("../../assets/images/supportdonations.png")
-      ,
+      image: require('../../assets/images/img.jpeg'),
     },
     {
       id: '3',
@@ -29,7 +28,7 @@ const DemandeSurAnnonceScreen = () => {
       date: '02/01/2023',
       quantity: 24,
       state: 'Acceptée',
-      image:  require("../../assets/images/supportdonations.png")
+      image: require('../../assets/images/img.jpeg'),
     },
     {
       id: '4',
@@ -37,7 +36,7 @@ const DemandeSurAnnonceScreen = () => {
       date: '02/01/2023',
       quantity: 24,
       state: 'En attente',
-      image:  require("../../assets/images/supportdonations.png")
+      image: require('../../assets/images/img.jpeg'),
     },
     {
       id: '5',
@@ -45,7 +44,7 @@ const DemandeSurAnnonceScreen = () => {
       date: '02/01/2023',
       quantity: 24,
       state: 'En attente',
-      image:  require("../../assets/images/supportdonations.png")
+      image: require('../../assets/images/img.jpeg'),
     },
     {
       id: '6',
@@ -53,7 +52,7 @@ const DemandeSurAnnonceScreen = () => {
       date: '02/01/2023',
       quantity: 24,
       state: 'En attente',
-      image:  require("../../assets/images/supportdonations.png")
+      image: require('../../assets/images/img.jpeg'),
     },
   ]);
 
@@ -71,8 +70,7 @@ const DemandeSurAnnonceScreen = () => {
 
   const renderItem = ({ item }: { item: DemandeType }) => (
     <View style={styles.itemContainer}>
-      <Image  source={require("../../assets/images/supportdonations.png")}
-/>
+      <Image source={item.image} style={styles.image} />
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>{item.demandeur}</Text>
         <Text>Date: {item.date}</Text>

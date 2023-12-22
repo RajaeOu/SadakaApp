@@ -7,11 +7,13 @@ import {
   Pressable,
   TextInput,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState, useEffect } from "react";
+import Dialog, { DialogContent, DialogTitle } from 'react-native-popup-dialog';
 
 import { Octicons, Ionicons } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
+import {  AntDesign, MaterialIcons } from "@expo/vector-icons";
 import Carousel from "../../components/Carousel";
 import Categories from "../../components/Categories";
 import Liste from "../../components/Liste";
@@ -26,54 +28,78 @@ import axios from "axios";
 export default function TabTwoScreen() {
   const [announcements, setAnnouncements] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [allAnnouncements, setAllAnnouncements] = useState([]);
 
-  const handleSearch1 = () => {
-    console.log("hh");
-   }
-     const handleSearch = () => {
+ 
+  const handleSearch = (searchTerm) => {
     // Appeler votre API ici en utilisant Axios pour la requête de recherche
     axios.get(`http://172.16.32.141:8086/annonces/par-motcle/${searchTerm}`)
       .then(response => {
-        // Mettre à jour la liste des annonces avec les résultats de la recherche
-        setAnnouncements(response.data);
-console.log(announcements);
-        // ... Autres actions à effectuer après la recherche ...
+        const newAnnouncements = response.data;
+  
+        // if (searchTerm.trim() === '') {
+        //   // Si le champ de recherche est vide, réinitialiser la liste des annonces avec toutes les annonces
+        //   setAllAnnouncements(response.data);
+        //   console.log("pas de liste");
+        // }  
+        if (newAnnouncements.length === 0) {
+          // Aucune annonce trouvée, afficher une alerte
+          setAnnouncements([]);
+          Alert.alert(
+            'Aucune annonce',
+            'Il n\'y a plus d\'annonces à afficher.',
+            [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+            { cancelable: false, textStyle: { color: 'red' } }
+          );
+        } else {
+          // Mettre à jour la liste des annonces avec les résultats de la recherche
+          setAnnouncements(newAnnouncements);
+          console.log(announcements);
+          console.log("hh");
+          // ... Autres actions à effectuer après la recherche ...
+        }
       })
       .catch(error => {
         console.error('Erreur lors de la recherche :', error);
       });
   };
+  
+
 
   useEffect(() => {
     // Fetch data from the server when the component mounts
     axios.get("http://172.16.32.141:8086/annonces/all_annonces")
       .then((response) => {
         setAnnouncements(response.data);
+        setAllAnnouncements(response.data);
+
         // console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching announcements:", error);
       });
   }, []);
-  
+
   const [showSidebar, setShowSidebar] = useState(false);
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
- 
-  
 
+
+  
   return (
     <View style={{ flex: 1 }}>
-      
+
       <ScrollView style={{ flex: 1, backgroundColor: "#f8f8f8" }}>
-        <View style={{ marginHorizontal: 10,
+        <View style={{
+          marginHorizontal: 10,
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
           paddingHorizontal: 16,
           paddingVertical: 12,
-          flex: 1,}}>
+          flex: 1,
+        }}>
           <View
             style={{
               flexDirection: "row",
@@ -88,19 +114,21 @@ console.log(announcements);
               flex: 1,
             }}
           >
-             <TextInput
+            <TextInput
               style={{ flex: 1, fontSize: 16 }}
-              placeholder="Entrez votre terme de recherche"
+              placeholder="Rechercher"
               value={searchTerm}
               onChangeText={(text) => setSearchTerm(text)}
             />
             <Pressable
               style={{ padding: 10 }}
-              onPress={handleSearch}
+              onPress={() => handleSearch(searchTerm)} // Appel avec searchTerm comme paramètre
             >
               <AntDesign name="search1" size={24} color="#E52B50" />
             </Pressable>
           </View>
+          <AntDesign name="filter" size={24} color="#E52B50" />
+
           <Pressable
             style={{
               marginLeft: 10,
@@ -115,6 +143,7 @@ console.log(announcements);
 
           >
             <Text>S</Text>
+
           </Pressable>
           <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
 
@@ -122,8 +151,16 @@ console.log(announcements);
 
         <Carousel />
         <Categories />
+        
         <Divider />
+        <Pressable
+              style={styles.sortButton}
+              onPress={() => console.log('Sort button pressed')}
+            >
+          <MaterialIcons name="filter-list" size={24} color="#800000" />
+            </Pressable>
         <Liste data={announcements} />
+     
       </ScrollView>
 
       <View style={styles.navigatorContainer}>
@@ -134,6 +171,12 @@ console.log(announcements);
 }
 
 const styles = StyleSheet.create({
+  sortButton: {
+    borderRadius: 4, // Bord arrondi
+    paddingHorizontal: 3, // Espacement horizontal interne
+    paddingVertical: 1, // Espacement vertical interne
+    marginLeft: 350, // Marge à gauche pour l'espacement
+  },
   container: {
     flex: 1,
     backgroundColor: "#f8f8f8",

@@ -23,7 +23,7 @@ export default function Navigator() {
           </Link>
         </Pressable>
         <Pressable style={styles.iconb}>
-          <Link href="/(tabs)/mes_demandes">
+          <Link href="/(tabs)/MesDemandes">
             <MaterialIcons name="playlist-add" size={25}  style={styles.iconst} />
           </Link>
         </Pressable>
