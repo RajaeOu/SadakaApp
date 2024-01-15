@@ -1,0 +1,77 @@
+{
+    "communes": [
+      {
+        "nom": "Casablanca",
+        "longitude": -7.5898434,
+        "latitude": 33.5731104,
+        "nombreAnnonces": 3,
+        "annonces": [
+          {
+            "id": 1,
+        "utilisateur": "Soukaina",
+        "titre": "Annonce 1",
+        "description": "Description de l'annonce 1",
+        "categorie": "Catégorie 1",
+        "quantite": 10,
+        "commune": "Commune 1",
+        "date":"01/01/2023",
+        "statut": "En attente"
+          },
+          {
+            "id": 2,
+        "utilisateur": "Doha",
+        "titre": "Annonce 2",
+        "description": "Description de l'annonce 2",
+        "categorie": "Catégorie 2",
+        "quantite": 20,
+        "commune": "Commune 1",
+        "date":"01/01/2023",
+        "statut": "Rejetée"
+          },
+          {
+            "id": 3,
+        "utilisateur": "Meryam",
+        "titre": "Annonce 3",
+        "description": "Description de l'annonce 3",
+        "categorie": "Catégorie 3",
+        "quantite": 5,
+        "commune": "Commune 1",
+        "date":"01/01/2023",
+        "statut": "Validée"
+          }
+        ]
+      },
+      {
+        "nom": "Agadir",
+        "longitude": -9.598107,
+        "latitude": 30.427755,
+        "nombreAnnonces": 2,
+        "annonces": [
+          {
+            "id": 4,
+        "utilisateur": "Meryam",
+        "titre": "Annonce 4",
+        "description": "Description de l'annonce 4",
+        "categorie": "Catégorie 4",
+        "quantite": 5,
+        "commune": "Commune 4",
+        "date":"01/01/2023",
+        "statut": "Validée"
+          },
+          {
+            "id": 5,
+        "utilisateur": "Meryam",
+        "titre": "Annonce 3",
+        "description": "Description de l'annonce 3",
+        "categorie": "Catégorie 3",
+        "quantite": 14,
+        "commune": "Commune 4",
+        "date":"01/01/2023",
+        "statut": "Validée"
+          }
+        ]
+      }
+      
+    ]
+  }
+  
