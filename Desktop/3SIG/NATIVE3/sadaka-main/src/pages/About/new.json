@@ -1,0 +1,35 @@
+{
+  "cover": {
+    "id": 1,
+    "imageSrc": "images/img/dummy/img6.jpg",
+    "title": "Soutenez notre Cause : Rejoignez la Campagne de Dons",
+    "category": "Campagne de Dons",
+    "description": "Contribuez à faire une différence dans le monde en participant à notre campagne de dons. Votre soutien est crucial pour la réussite de notre mission."
+  },
+  "articles": [
+    {
+      "id": 2,
+      "imageSrc": "images/img/dummy/img2.jpg",
+      "title": "Dernières Nouvelles : Des Donateurs Généreux S'Engagent pour un Avenir Meilleur",
+      "category": "Dons"
+    },
+    {
+      "id": 3,
+      "imageSrc": "images/img/dummy/img3.jpg",
+      "title": "La Puissance du Don : Comment les Dons Transforment des Vies",
+      "category": "Philanthropie"
+    },
+    {
+      "id": 4,
+      "imageSrc": "images/img/dummy/img4.jpg",
+      "title": "Mise à Jour de la Campagne : Étapes Franchies Grâce à Vos Contributions",
+      "category": "Rapport de Progrès"
+    },
+    {
+      "id": 5,
+      "imageSrc": "images/img/dummy/img5.jpg",
+      "title": "Rencontrez les Visages derrière la Campagne : Histoires d'Impact et de Reconnaissance",
+      "category": "À la Une des Donateurs"
+    }
+  ]
+}
