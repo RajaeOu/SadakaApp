@@ -2,10 +2,223 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>INVOLYS</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.26/"></script> 
+   
+    <link rel="stylesheet" href="style.css"/>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+   
 </head>
+
 <body>
-    <h1>Hello</h1>
+  <img src="image/involys.png" style="width: 80px; height: auto" alt="Logo Involys">
+
+    <nav class="main-menu" id="ff">
+        <ul>
+            <br>
+            <li>
+                <a href="geoportail.html">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">
+                       Accueil
+                    </span>
+                </a>
+              
+            </li><br>
+            <li>
+                <a href="geoportail.html">
+                    <i class="fa fa-spinner fa-2x"></i>
+                    <span class="nav-text">
+                       Rafraîchir
+                    </span>
+                </a>
+              
+            </li><br>
+            <li>
+                
+            </li>
+            <li class="has-subnav">
+                <a href="#" onclick="openCommune(1)">
+                    <i class="fa fa-square fa-2x"></i>
+                    <span class="nav-text">
+                        Maroc
+                    </span>
+                </a>
+                <div id="1" style="display:none;">
+                    <select  class="list" id="communeSelect" >
+                        <option value="">Sélectionner  le Maroc selon</option>
+                        <option value="provinces">  Province </option>
+                        <option value="region"> Region</option>
+                        
+                    </select>
+                  </div>
+            </li>
+            <br>
+            <li >
+                <a href="#" onclick="openCommune('3')">
+                  <i class="fa fa-minus fa-2x"></i>
+                  <span class="nav-text">Type du ligne</span>
+                </a>
+                <div id="3" style="display:none;">
+                  <select class="list" id="hotelSelect">
+                    <option value="">--Choisir un type selon la zone d'affectation--</option>
+                    <option value="Zone_Affec='Télécoms'">Télécoms</option>
+                    <option value="Zone_Affec='Bâtiment 11 kv'">Bâtiment 11 kv</option>
+                    <option value="Zone_Affec='MOYENS COMMUNS'">MOYENS COMMUNS</option>
+                  </select>
+                </div>
+              </li>
+              <br>
+              <li>
+                <a href="#" id="affihcedata">
+                    <i class="fa fa-plus fa-2x"></i>
+                    <span class="nav-text">
+                        Add data
+                    </span>
+                </a>
+                
+                <div class="data-upload-widget">
+                    <!-- Votre code HTML -->
+<!-- Votre code HTML -->
+
+<label for="layer1Url">Support ligne :</label>
+  <input type="text" id="layer1Url" placeholder="Entrez l'URL de la première couche">
+  <button id="loadButtonLayer1">Charger </button>
+
+  <label for="layer2Url"> Type de ligne :</label>
+  <input type="text" id="layer2Url" placeholder="Entrez l'URL de la deuxième couche">
+  <button id="loadButtonLayer2">Charger </button>
+
+  <label for="autreLayerUrl">URL d'une autre couche :</label>
+  <input type="text" id="autreLayerUrl" placeholder="Entrez l'URL d'une autre couche">
+  <button id="loadButtonAutreLayer">Charger </button>
+
+
+                </div>
+            </li>
+            <br>
+            <li>
+                <a href="#" onclick="toggleDiv()">
+                    <i class="fa fa-trash fa-2x"></i>
+                    <span class="nav-text">
+                        Delete data
+                    </span>
+                </a>
+            
+                <div id="myDiv" class="custom-div" style="display: none;">
+                    <label for="layerSelect">Choisir une couche à supprimer :</label>
+                    <select id="layerSelect">
+                        <!-- Les options seront générées dynamiquement à partir des couches stockées localement -->
+                    </select>
+                    <button onclick="supprimerCouche()">Supprimer</button>
+                </div>
+            </li>
+            
+                <br>
+            <li>
+                <a href="#" id="layerListIcon">
+                  <i class="fa fa-layer-group fa-2x"></i>
+                  <span class="nav-text">
+                     Layer
+                  </span>
+  
+              </a>
+              </li>
+              <br>
+            <li>
+              <a href="#" id="affihceimprimer">
+                <i class="fa fa-print fa-2x"></i>
+                <span class="nav-text">
+                   Imprimer
+                </span>
+
+            </a>
+            </li>
+            
+        </ul>
+
+       
+
+    </nav>
+    
+    <div id="mapContainer"></div>
+    
+    
+    <div id="viewDiv"></div>
+    <div id="editter"></div>
+    <div id="basemapGalleryDiv"></div>
+    <button id="toggleButton"><i class="fa fa-layer-group"></i></button>
+    <div id="topbar">
+        <button
+          class="action-button esri-icon-measure-line"
+          id="distanceButton"
+          type="button"
+          title="Measure distance between two or more points"
+        ></button>
+        <button class="action-button esri-icon-measure-area" id="areaButton" type="button" title="Measure area"></button>
+        
+      </div>
+      <div id="mapContainer"></div>
+    <div id="coordinatesContainer" ></div>
+    <script>
+       function openCommune(id) {
+  var listeContainer = document.getElementById(id);
+  if (listeContainer.style.display === "none") {
+    listeContainer.style.display = "block";
+  } else {
+    listeContainer.style.display = "none";
+  }
+}
+document.getElementById("affihcedata").addEventListener("click", toggleDataWidget);
+
+        function toggleDataWidget() {
+            var dataWidget = document.querySelector(".data-upload-widget");
+            dataWidget.classList.toggle("show");
+        }
+        function supprimerCouche() {
+      const layerSelect = document.getElementById("layerSelect");
+      const selectedLayerName = layerSelect.value;
+      if (!selectedLayerName) {
+        alert("Veuillez choisir une couche.");
+        return;
+      }
+
+      localStorage.removeItem(selectedLayerName);
+      alert(`La couche "${selectedLayerName}" a été supprimée.`);
+      afficherCouchesStockees();
+    }
+
+    // Fonction pour afficher les couches stockées localement dans la liste déroulante
+    function afficherCouchesStockees() {
+      const layerSelect = document.getElementById("layerSelect");
+      layerSelect.innerHTML = "";
+
+      for (let i = 0; i < localStorage.length; i++) {
+        const nomCouche = localStorage.key(i);
+        const option = document.createElement("option");
+        option.value = nomCouche;
+        option.textContent = nomCouche;
+        layerSelect.appendChild(option);
+      }
+    }
+
+    // Appeler la fonction pour afficher les couches stockées localement lors du chargement de la page
+    afficherCouchesStockees();
+    function toggleDiv() {
+    var div = document.getElementById("myDiv");
+    if (div.style.display === "none") {
+        div.style.display = "block";
+    } else {
+        div.style.display = "none";
+    }
+}
+    </script>
+   
+
 </body>
 </html>
